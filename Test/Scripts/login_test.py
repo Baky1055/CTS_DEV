@@ -29,5 +29,15 @@ class test_sign_page(WebDriverSetup):
         driver = self.driver
         self.driver.get("http://dev-citizen.ctrends-software.com/#/home")
 
+<<<<<<< HEAD
         # cts_home_page = cts_home(driver)
         # cts_home_page.login_sign_in.click()
+=======
+        log_in_page = login_Page(driver)
+
+        log_in_page.get_sign_in()
+        log_in_page.input_user_name(valid_username)
+        log_in_page.input_pass_word(valid_password)
+        log_in_page.click_login_button()
+
+>>>>>>> Initial commit
