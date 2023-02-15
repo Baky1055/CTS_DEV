@@ -16,3 +16,4 @@ class Citizen_locator(object):
     # for logout
     nav_top_links_id = "user-img-img-raised"
     logout_xpath = "//a[normalize-space()='Logout']"
+
