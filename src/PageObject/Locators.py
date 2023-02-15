@@ -12,3 +12,7 @@ class Citizen_locator(object):
     username_name = "username"
     password_name = "password"
     login_xpath = "//button[normalize-space()='Login']"
+
+    # for logout
+    nav_top_links_id = "user-img-img-raised"
+    logout_xpath = "//a[normalize-space()='Logout']"

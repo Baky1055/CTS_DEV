@@ -1,4 +1,6 @@
 import sys
+import time
+
 sys.path.append(sys.path[0] + "/....")
 
 import unittest
@@ -7,6 +9,8 @@ from time import sleep
 from src.TestBase.WebDriverSetup import WebDriverSetup
 from src.PageObject.Pages.loginPage import login_Page
 from src.PageObject.Pages.HomePage import cts_home
+from selenium.common.exceptions import NoSuchElementException
+from selenium.webdriver.chrome import webdriver
 
 from selenium.webdriver.common.by import By
 from selenium.webdriver.support.ui import WebDriverWait
@@ -24,20 +28,52 @@ Blank_password = " "
 
 class test_sign_page(WebDriverSetup):
 
-    def test_sign_in_page(self):
+    # def test_sign_in_page(self):
+    #
+    #     driver = self.driver
+    #     self.driver.get("http://dev-citizen.ctrends-software.com/#/home")
+    #
+    #     log_in_page = login_Page(driver)
+    #
+    #     log_in_page.get_sign_in()
+    #     log_in_page.input_user_name(valid_username)
+    #     log_in_page.input_pass_word(valid_password)
+    #     log_in_page.click_login_button()
 
+    def test_sign_in_with_valid_user_and_pass(self):
         driver = self.driver
-        self.driver.get("http://dev-citizen.ctrends-software.com/#/home")
+        data = {
+            "email" : valid_username,
+            "password" : valid_password
+        }
+        signin_helper_valid_user_and_pass(driver,data)
+        try:
+            signout_helper(driver)
+        except NoSuchElementException:
+            self.fail('Not ok')
 
-<<<<<<< HEAD
-        # cts_home_page = cts_home(driver)
-        # cts_home_page.login_sign_in.click()
-=======
+def signin_helper_valid_user_and_pass(driver, row):
+    driver.delete_all_cookies()
+    driver.get("http://dev-citizen.ctrends-software.com/#/home")
+    time.sleep(1)
+    try:
         log_in_page = login_Page(driver)
-
         log_in_page.get_sign_in()
         log_in_page.input_user_name(valid_username)
         log_in_page.input_pass_word(valid_password)
         log_in_page.click_login_button()
+        time.sleep(2)
 
->>>>>>> Initial commit
+    except NoSuchElementException:
+        return 0
+
+def signout_helper(driver):
+    driver.get("http://dev-citizen.ctrends-software.com/#/home")
+    logout_page = login_Page(driver)
+    logout_page.click_logout_button()
+    time.sleep(1)
+
+if __name__ == '__main__':
+    unittest.main()
+
+

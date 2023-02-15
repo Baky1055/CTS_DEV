@@ -14,17 +14,6 @@ class login_Page(object):
         # self.login_pass_ward = driver.find_element(By.NAME, Citizen_locator.password_name)
         # self.click_login_button = driver.find_element(By.XPATH, Citizen_locator.login_xpath)
 
-<<<<<<< HEAD
-
-    def input_user_name(self):
-        return self.login_user_name
-
-    def input_pass_word(self):
-        return self.login_pass_ward
-
-    def click_login_button(self):
-        return self.click_sign_in_page()
-=======
     def get_sign_in(self):
         self.driver.find_element(By.XPATH, Citizen_locator.sign_in_xpath).click()
 
@@ -36,5 +25,8 @@ class login_Page(object):
         self.driver.find_element(By.NAME, Citizen_locator.password_name).send_keys(password)
 
     def click_login_button(self):
-        self.driver.find_element(By.XPATH, Citizen_locator.login_xpath)
->>>>>>> Initial commit
+        self.driver.find_element(By.XPATH, Citizen_locator.login_xpath).click()
+
+    def click_logout_button(self):
+        self.driver.find_element(By.ID, Citizen_locator.nav_top_links_id)
+        self.driver.find_element(By.XPATH, Citizen_locator.logout_xpath).click()
