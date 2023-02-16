@@ -16,13 +16,14 @@ driver.find_element(By.XPATH, "//button[normalize-space()='Login']").click()
 # driver.find_element(By.XPATH, "// a[normalize - space() = 'Logout']").click()
 time.sleep(2)
 
-dd = driver.find_elements(By.XPATH, "//li[@class='dropdown']//ul[@class='dropdown-menu']")
+dd = driver.find_elements(By.XPATH, "//img[@id='user-img-img-raised']")
 
 i = 0
 for i in range(i, dd):
     if i < dd:
-        logout = driver.find_element(By.XPATH, "//a[normalize-space()='Logout']").click()
+        logout =dd.driver.find_element(By.XPATH, "//a[normalize-space()='Logout']").click()
 
 time.sleep(2)
+
 # nav_top_links = driver.find_element(By.ID, "user-img-img-raised")
 # signout = nav_top_links.driver.find_element(By.XPATH, "//a[normalize-space()='Logout']").click()
