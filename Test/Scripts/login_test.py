@@ -41,47 +41,47 @@ class test_sign_page(WebDriverSetup):
         log_in_page.input_pass_word(valid_password)
         log_in_page.click_login_button()
 
-    # def test_sign_in_with_valid_user_and_pass(self):
-    #     driver = self.driver
-    #     data = {
-    #         "email" : valid_username,
-    #         "password" : valid_password
-    #     }
-    #     signin_helper_valid_user_and_pass(driver,data)
-    #     try:
-    #         signout_helper(driver)
-    #     except NoSuchElementException:
-    #         self.fail('Not ok')
+    def test_sign_in_with_valid_user_and_pass(self):
+        driver = self.driver
+        data = {
+            "email" : valid_username,
+            "password" : valid_password
+        }
+        signin_helper_valid_user_and_pass(driver,data)
+        try:
+            signout_helper(driver)
+        except NoSuchElementException:
+            self.fail('Not ok')
 
-# def signin_helper_valid_user_and_pass(driver, row):
-#     driver.delete_all_cookies()
-#     driver.get("http://dev-citizen.ctrends-software.com/#/home")
-#     time.sleep(1)
-#     try:
-#         log_in_page = login_Page(driver)
-#         log_in_page.get_sign_in()
-#         log_in_page.input_user_name(valid_username)
-#         log_in_page.input_pass_word(valid_password)
-#         log_in_page.click_login_button()
-#         time.sleep(2)
-#
-#     except NoSuchElementException:
-#         return 0
-#
-# def signout_helper(driver):
-#     driver.get("http://dev-citizen.ctrends-software.com/#/")
-#     # logout_page = login_Page(driver)
-#     # logout_page.click_logout_button()
-#     nav_top_links = driver.find_elements(By.XPATH, "//li[@class='dropdown']//ul[@class='dropdown-menu']")
-#
-#     signout = Select(nav_top_links)
-#     signout.s
-#         # nav_top_links.find_element(By.XPATH, "//a[normalize-space()='Logout']")
-#     signout.click()
-#
-#     time.sleep(1)
-#
-# if __name__ == '__main__':
-#     unittest.main()
+def signin_helper_valid_user_and_pass(driver, row):
+    driver.delete_all_cookies()
+    driver.get("http://dev-citizen.ctrends-software.com/#/home")
+    time.sleep(1)
+    try:
+        log_in_page = login_Page(driver)
+        log_in_page.get_sign_in()
+        log_in_page.input_user_name(valid_username)
+        log_in_page.input_pass_word(valid_password)
+        log_in_page.click_login_button()
+        time.sleep(2)
+
+    except NoSuchElementException:
+        return 0
+
+def signout_helper(driver):
+    driver.get("http://dev-citizen.ctrends-software.com/#/")
+    # logout_page = login_Page(driver)
+    # logout_page.click_logout_button()
+    nav_top_links = driver.find_elements(By.XPATH, "//li[@class='dropdown']//ul[@class='dropdown-menu']")
+
+    signout = Select(nav_top_links)
+    signout.s
+        # nav_top_links.find_element(By.XPATH, "//a[normalize-space()='Logout']")
+    signout.click()
+
+    time.sleep(1)
+
+if __name__ == '__main__':
+    unittest.main()
 
 
