@@ -10,6 +10,7 @@ from src.TestBase.WebDriverSetup import WebDriverSetup
 from src.PageObject.Pages.loginPage import login_Page
 from src.PageObject.Pages.HomePage import cts_home
 from selenium.common.exceptions import NoSuchElementException
+from selenium.webdriver.common.action_chains import ActionChains
 from selenium.webdriver.support.select import Select
 from selenium.webdriver.support.ui import Select
 from selenium.webdriver.chrome import webdriver
@@ -70,11 +71,19 @@ def signin_helper_valid_user_and_pass(driver, row):
         return 0
 
 def signout_helper(driver):
-    driver.get("http://dev-citizen.ctrends-software.com/#/")
-    time.sleep(1)
-    nav_top_links = driver.find_element(By.XPATH, "//li[@class='dropdown']")
+    # driver.get("http://dev-citizen.ctrends-software.com/#/home")
+    # time.sleep(1)
 
-    time.sleep(1)
+    a = ActionChains(driver)
+    nav_top_links = driver.find_element(By.XPATH, "//li[@class='dropdown']")
+    a.move_to_element(nav_top_links).perform()
+    menu = driver.find_element(By.XPATH, "//li[@class='dropdown']//ul[@class='dropdown-menu']")
+    a.move_to_element(menu).click().perform()
+    # menu.click()
+    time.sleep(5)
+
+    Signout = menu.find_element(By.XPATH, "//a[normalize-space()='Logout']")
+    Signout.click()
 
 if __name__ == '__main__':
     unittest.main()

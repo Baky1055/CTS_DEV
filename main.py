@@ -4,6 +4,7 @@ from selenium import webdriver
 from selenium.webdriver.chrome.service import Service
 from webdriver_manager.chrome import ChromeDriverManager
 from selenium.webdriver.common.by import By
+from selenium.webdriver.common.action_chains import ActionChains
 from selenium.webdriver.support.ui import Select
 
 driver = webdriver.Chrome(service=Service(ChromeDriverManager().install()))
@@ -17,8 +18,11 @@ driver.find_element(By.XPATH, "//button[normalize-space()='Login']").click()
 # driver.find_element(By.XPATH, "// a[normalize - space() = 'Logout']").click()
 time.sleep(2)
 
+a = ActionChains(driver)
 nav_top_links = driver.find_element(By.XPATH, "//li[@class='dropdown']")
-menu = nav_top_links.find_element(By.XPATH, "//li[@class='dropdown']//ul[@class='dropdown-menu']")
+a.move_to_element(nav_top_links).perform()
+menu = driver.find_element(By.XPATH, "//li[@class='dropdown']//ul[@class='dropdown-menu']")
+a.move_to_element(menu).click().perform()
 # menu.click()
 time.sleep(1)
 
