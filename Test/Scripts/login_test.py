@@ -121,6 +121,19 @@ class test_sign_page(WebDriverSetup):
         except NoSuchElementException:
             pass
 
+    def test_sign_in_with_Invalid_Username_and_Invalid_Pass_Should_fail(self):  # Here used invalid username and invalid pass
+        driver = self.driver
+        data = {
+            "email": invalid_username,
+            "password": invalid_password
+        }
+        signin_helper_valid_user_and_pass(driver,data)
+        try:
+            signout_helper(driver)
+            self.fail()
+        except NoSuchElementException:
+            pass
+
 def signin_helper_valid_user_and_pass(driver, row):
     driver.delete_all_cookies()
     driver.get("http://dev-citizen.ctrends-software.com/#/home")
