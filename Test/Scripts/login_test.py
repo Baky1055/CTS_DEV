@@ -55,6 +55,19 @@ class test_sign_page(WebDriverSetup):
         except NoSuchElementException:
             self.fail('Not ok')
 
+    def test_sign_in_with_valid_username_and_Blank_password_should_fail(self):
+        driver = self.driver
+        data = {
+            "email": valid_username,
+            "password": Blank_password
+        }
+        signin_helper_valid_user_and_pass(driver,data)
+        try:
+            signout_helper(driver)
+            self.fail()
+        except NoSuchElementException:
+            pass
+
     def test_sign_in_with_empty_username_and_password_should_fail(self):
         driver = self.driver
         data = {

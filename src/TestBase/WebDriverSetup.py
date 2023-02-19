@@ -18,6 +18,6 @@ class WebDriverSetup(unittest.TestCase):
 
     def tearDown(self):
         if (self.driver != None):
-            print("Cleanup of test environment")
+            print("Test Completed")
             self.driver.close()
             self.driver.quit()
