@@ -25,8 +25,8 @@ valid_password = "abc123456AA"
 invalid_username = "aedd"
 invalid_password = "Abc34562hh"
 
-Blank_username = " "
-Blank_password = " "
+Blank_username = ''
+Blank_password = ''
 
 
 class test_sign_page(WebDriverSetup):
@@ -55,6 +55,22 @@ class test_sign_page(WebDriverSetup):
         except NoSuchElementException:
             self.fail('Not ok')
 
+    def test_sign_in_with_empty_username_and_password_should_fail(self):
+        driver = self.driver
+        data = {
+            "email": Blank_username,
+            "password": Blank_password
+        }
+
+        signin_helper_valid_user_and_pass(driver,data)
+        try:
+            signout_helper(driver)
+            self.fail()
+        except NoSuchElementException:
+            pass
+
+
+
 def signin_helper_valid_user_and_pass(driver, row):
     driver.delete_all_cookies()
     driver.get("http://dev-citizen.ctrends-software.com/#/home")
@@ -62,8 +78,8 @@ def signin_helper_valid_user_and_pass(driver, row):
     try:
         log_in_page = login_Page(driver)
         log_in_page.get_sign_in()
-        log_in_page.input_user_name(valid_username)
-        log_in_page.input_pass_word(valid_password)
+        log_in_page.input_user_name(row['email'])
+        log_in_page.input_pass_word(row['password'])
         log_in_page.click_login_button()
         time.sleep(2)
 
