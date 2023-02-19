@@ -43,7 +43,7 @@ class test_sign_page(WebDriverSetup):
         log_in_page.input_pass_word(valid_password)
         log_in_page.click_login_button()
 
-    def test_sign_in_with_valid_user_and_pass(self):
+    def test_sign_in_with_valid_user_and_pass(self):  # Here used valid username and valid Password
         driver = self.driver
         data = {
             "email" : valid_username,
@@ -55,7 +55,7 @@ class test_sign_page(WebDriverSetup):
         except NoSuchElementException:
             self.fail('Not ok')
 
-    def test_sign_in_with_valid_username_and_Blank_password_should_fail(self):
+    def test_sign_in_with_valid_username_and_Blank_password_should_fail(self):  # Here used Valid username and Blank Password
         driver = self.driver
         data = {
             "email": valid_username,
@@ -68,7 +68,20 @@ class test_sign_page(WebDriverSetup):
         except NoSuchElementException:
             pass
 
-    def test_sign_in_with_empty_username_and_password_should_fail(self):
+    def test_sign_in_with_Blank_username_and_Valid_password_should_fail(self):  # Here used Blank username and Valid Password
+        driver = self.driver
+        data = {
+            "email": Blank_username,
+            "password": valid_password
+        }
+        signin_helper_valid_user_and_pass(driver,data)
+        try:
+            signout_helper(driver)
+            self.fail()
+        except NoSuchElementException:
+            pass
+
+    def test_sign_in_with_Blank_username_and_password_should_fail(self):  # Here used Blank username and Password
         driver = self.driver
         data = {
             "email": Blank_username,
@@ -82,7 +95,31 @@ class test_sign_page(WebDriverSetup):
         except NoSuchElementException:
             pass
 
+    def test_sign_in_with_valid_Username_and_invalid_Pass_should_fail(self):  # Here used valid username and Invalid password
+        driver = self.driver
+        data = {
+            "email": valid_username,
+            "password": invalid_password
+        }
+        signin_helper_valid_user_and_pass(driver,data)
+        try:
+            signout_helper(driver)
+            self.fail()
+        except NoSuchElementException:
+            pass
 
+    def test_sign_in_with_invalid_Username_and_Valid_Pass_should_fail(self): # Here used invalid username and valid password
+        driver = self.driver
+        data = {
+            "email": invalid_username,
+            "password": valid_password
+        }
+        signin_helper_valid_user_and_pass(driver,data)
+        try:
+            signout_helper(driver)
+            self.fail()
+        except NoSuchElementException:
+            pass
 
 def signin_helper_valid_user_and_pass(driver, row):
     driver.delete_all_cookies()
