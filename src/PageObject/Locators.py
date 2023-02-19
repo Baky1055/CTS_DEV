@@ -17,3 +17,12 @@ class Citizen_locator(object):
     nav_top_links_id = "user-img-img-raised"
     logout_xpath = "//a[normalize-space()='Logout']"
 
+    # for signUp
+    signup_className = "mat-button-wrapper"
+    fullname_Name = "personName"
+    Username_Name = "username"
+    PhoneNumber_Name = "mobile"
+    Email_Name = "email"
+
+
+
