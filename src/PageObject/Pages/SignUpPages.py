@@ -10,6 +10,9 @@ class signup_page(object):
 
         self.driver = driver
 
+    def get1_sign_in(self):
+        self.driver.find_element(By.XPATH, Citizen_locator.sign_in_xpath).click()
+
     def get_signup_click(self):
         self.driver.find_element(By.CLASS_NAME,Citizen_locator.signup_className).click()
 
